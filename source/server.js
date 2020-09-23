@@ -20,6 +20,14 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => console.log(`Sample node app listening at port ${port}`))
 
+// Sample code for checking permissions
+var fs = require('fs');
+var dir = './logs';
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
 // Sample code for SonarQube
 let corsOptions = {
   origin: '*' // Sensitive
