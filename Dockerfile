@@ -6,7 +6,8 @@ COPY source/package*.json ./
 RUN npm install
 COPY source/* ./
 RUN chgrp -R 0 ./ && \
-    chmod -R g=u ./    
+    chmod -R g=u ./
+RUN mkdir logs
 #USER ${USER_ID}
 USER node
 EXPOSE 8080
