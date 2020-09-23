@@ -7,8 +7,8 @@ RUN npm install
 COPY source/* ./
 RUN chgrp -R 0 ./ && \
     chmod -R g=u ./
-RUN mkdir logs
 #USER ${USER_ID}
 USER node
+RUN mkdir logs
 EXPOSE 8080
 CMD ["node", "server.js"]
