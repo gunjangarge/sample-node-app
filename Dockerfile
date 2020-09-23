@@ -9,6 +9,5 @@ RUN chgrp -R 0 ./ && \
     chmod -R g=u ./
 #USER ${USER_ID}
 USER node
-RUN mkdir logs
 EXPOSE 8080
 CMD ["node", "server.js"]
