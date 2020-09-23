@@ -1,4 +1,4 @@
-FROM node:current-alpine
+FROM node:latest
 #ENV USER_ID=1001
 USER root
 WORKDIR /usr/src/app
