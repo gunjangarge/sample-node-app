@@ -24,7 +24,7 @@ app.get('/perf', (req, res) => {
     console.log("counted till " + i);
     res.status(200)
     .send({
-        message: "counted till " + i"
+        message: "counted till " + i
     });
 })
 
