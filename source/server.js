@@ -18,6 +18,17 @@ app.get('/', (req, res) => {
     res.send(msg);
 })
 
+app.get('/perf', (req, res) => {
+    var i=0;
+    while (i < 9e5) i++;
+    console.log("counted till " + i);
+    res.status(200)
+    .send({
+        message: "counted till " + i"
+    });
+})
+
+
 app.listen(port, () => console.log(`Sample node app listening at port ${port}`))
 
 // Sample code for checking permissions
