@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const os = require('os');
 const port = 8080
 var msg;
 var app_msg = process.env.APP_MSG;
@@ -19,7 +20,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/ip', (req, res) => {
-    msg = 'Hello, ' + req.hostname + '. Time is ' + Date(); 
+    msg = 'Hello, ' + req.hostname + '. Time is ' + Date() + '. From: ' + os.hostname() + '.\n'; 
     console.log(msg);
     res.send(msg);
 })
