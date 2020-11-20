@@ -18,6 +18,11 @@ app.get('/', (req, res) => {
     res.send(msg);
 })
 
+app.get('/ip', (req, res) => {
+    msg = 'Hello, ' + req.hostname + '.\nTime is ' + Date(); 
+    res.send(msg);
+})
+
 app.get('/perf', (req, res) => {
     var i=0;
     while (i < 9e5) i++;
