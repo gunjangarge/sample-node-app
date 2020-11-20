@@ -20,6 +20,7 @@ app.get('/', (req, res) => {
 
 app.get('/ip', (req, res) => {
     msg = 'Hello, ' + req.hostname + '. Time is ' + Date(); 
+    console.log(msg);
     res.send(msg);
 })
 
