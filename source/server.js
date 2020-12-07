@@ -10,9 +10,9 @@ var user_password= process.env.USER_PASSWORD;
 
 app.get('/', (req, res) => {
     if (app_msg == undefined) {
-        msg = 'Hello, ' + req.hostname + '. Time is ' + Date() + '.\nYou have no message for me.\n';
+        msg = 'Hello, ' + req.hostname + ' / ' + req.connection.remoteAddress  + '. Time is ' + Date() + '.\nYou have no message for me.\n';
     } else {
-        msg = 'Hello, ' + req.hostname + '. Time is ' + Date() + '.\nI will deliver your message: ' + app_msg + '\n';
+        msg = 'Hello, ' + req.hostname + ' / ' + req.connection.remoteAddress  + '. Time is ' + Date() + '.\nI will deliver your message: ' + app_msg + '\n';
     }
     if (name != undefined && user_password != undefined){
         msg = msg + '\nYour user name is :- ' + name + ' and password is :- ' + user_password + '\n';
@@ -35,6 +35,18 @@ app.get('/perf', (req, res) => {
         message: "counted till " + i
     });
 })
+
+
+app.get('/ip/:ip/port/:port', function(req, res) {
+  console.log("http://" + req.params.ip  + ":"+ req.params.port +"/")
+  axios.get("http://" + req.params.ip  + ":"+ req.params.port +"/")
+    .then(function(response) {
+      res.json(response.data)
+    }).catch(function(error) {
+      res.json("Error occured!")
+    })
+});
+
 
 app.get("/getexttodos", (req, res) => {
   axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
