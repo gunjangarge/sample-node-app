@@ -35,5 +35,14 @@ app.get('/perf', (req, res) => {
     });
 })
 
+app.get("/getexttodos", (req, res) => {
+  axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
+    .then(function(response) {
+      res.json(response.data)
+    }).catch(function(error) {
+      res.json("Error occured!")
+    })
+})
+
 
 app.listen(port, () => console.log(`Sample node app listening at port ${port}`))
