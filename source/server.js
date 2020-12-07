@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/ip', (req, res) => {
-    msg = 'Hello, ' + req.hostname + '. Time is ' + Date() + '. From: ' + os.hostname() + '.\n'; 
+    msg = 'Hello, Your ip address: ' + req.connection.remoteAddress  + '. Time is ' + Date() + '. From: ' + os.hostname() + '.\n';
     console.log(msg);
     res.send(msg);
 })
@@ -38,8 +38,8 @@ app.get('/perf', (req, res) => {
 
 
 app.get('/ip/:ip/port/:port', function(req, res) {
-  console.log("http://" + req.params.ip  + ":"+ req.params.port +"/")
-  axios.get("http://" + req.params.ip  + ":"+ req.params.port +"/")
+  console.log("http://" + req.params.ip  + ":"+ req.params.port +"/ip")
+  axios.get("http://" + req.params.ip  + ":"+ req.params.port +"/ip")
     .then(function(response) {
       res.json(response.data)
     }).catch(function(error) {
