@@ -36,18 +36,6 @@ app.get('/perf', (req, res) => {
     });
 })
 
-
-app.get('/ip/:ip/port/:port', function(req, res) {
-  console.log("http://" + req.params.ip  + ":"+ req.params.port +"/ip")
-  axios.get("http://" + req.params.ip  + ":"+ req.params.port +"/ip")
-    .then(function(response) {
-      res.json(response.data)
-    }).catch(function(error) {
-      res.json("Error occured!")
-    })
-});
-
-
 app.get("/getexttodos", (req, res) => {
   axios.get("https://jsonplaceholder.typicode.com/todos?_limit=5")
     .then(function(response) {
