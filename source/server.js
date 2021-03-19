@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
     if (name != undefined && user_password != undefined){
         msg = msg + '\nYour user name is :- ' + name + ' and password is :- ' + user_password + '\n';
     }
+    console.log(JSON.stringify(req.headers));
     res.send(msg);
 })
 
