@@ -7,6 +7,7 @@ var msg;
 var app_msg = process.env.APP_MSG;
 var name= process.env.USER_NAME;
 var user_password= process.env.USER_PASSWORD;
+var color= process.env.COLOR
 
 app.get('/', (req, res) => {
     if (app_msg == undefined) {
@@ -23,6 +24,12 @@ app.get('/', (req, res) => {
 
 app.get('/ip', (req, res) => {
     msg = 'Hello, Your ip address: ' + req.connection.remoteAddress  + '. Time is ' + Date() + '. From: ' + os.hostname() + '.\n';
+    console.log(msg);
+    res.send(msg);
+})
+
+app.get('/bluegreen', (req, res) => {
+    msg = '<html><body style="background-color:' + color + '"></body></html>';
     console.log(msg);
     res.send(msg);
 })
