@@ -28,8 +28,14 @@ app.get('/ip', (req, res) => {
     res.send(msg);
 })
 
-app.get('/bluegreen', (req, res) => {
-    msg = '<html><body style="background-color:' + color + '"></body></html>';
+app.get('/blueORgreen', (req, res) => {
+    if (process.env.COLOR === "seagreen"){
+        var text = "Green";
+    } else {
+        var text = "Blue";
+    }
+    msg = '<html><body style="background-color:' + process.env.COLOR + '"><div style="text-align: center;display: inline-block;position: fixed;top: 0;bottom: 0;left: 0;right: 0;width: 100%;height: 50px;color: white;margin: auto;"><h1>' + text + '</h1> </div></body></html>';
+    //msg = '<html><body style="background-color:' + color + '"></body></html>';
     console.log(msg);
     res.send(msg);
 })
