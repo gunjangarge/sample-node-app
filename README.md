@@ -21,6 +21,9 @@ Wait till pod is in "Running" state
 
 ```console
 $ curl $(oc get route app-route -o jsonpath='{.spec.host}')/deploy
+```
+Deploy new version,
+```console
 $ oc new-app --name appv2 quay.io/gunjangarge/sample-node-app -e COLOR=darkcyan
 ```
 For A/B deployment,
