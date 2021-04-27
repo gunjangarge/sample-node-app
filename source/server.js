@@ -3,6 +3,11 @@ const axios = require("axios")
 const app = express()
 const os = require('os');
 const port = 8080
+const fs = require("fs");
+const https = require("https");
+const http = require('http');
+const key = fs.readFileSync("ssl-key.pem", "utf-8");
+const cert = fs.readFileSync("ssl.pem", "utf-8");
 var msg;
 var app_msg = process.env.APP_MSG;
 var name= process.env.USER_NAME;
@@ -54,4 +59,10 @@ app.get("/getexttodos", (req, res) => {
 })
 
 
-app.listen(port, () => console.log(`Sample node app listening at port ${port}`))
+//app.listen(port, () => console.log(`Sample node app listening at port ${port}`))
+https.createServer({ key, cert }, app).listen(8443, function(){
+        console.log('Secured Sample node app listening at port 8443')
+});
+http.createServer(app).listen(8080, function(){
+        console.log('Secured Sample node app listening at port 8080')
+});
