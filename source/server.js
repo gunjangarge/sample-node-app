@@ -60,14 +60,17 @@ app.get("/getexttodos", (req, res) => {
 })
 
 app.get("/gettodosfromdatabase", (req, res) => {
+    if (process.env.DB_SERVER == undefined || process.env.DB_USER == undefined || process.env.DB_PASSWORD == undefined) {
+        res.json({"error": "Please set DB_SERVER,DB_USER,DB_PASSWORD and DB_NAME environment variables."});
+    }
     const mysql = require('mysql');
     var mysqlConnection = mysql.createConnection({
                     host: process.env.DB_SERVER,
                     user: process.env.DB_USER,
                     password: process.env.DB_PASSWORD,
-                    database: process.env.DB_NAME,
+                    database: process.env.DB_NAME || 'todos',
                     port: '3306'
-                });
+    });
     mysqlConnection.connect((err)=> {
         if(!err)
             console.log('Connection Established Successfully');
@@ -76,7 +79,7 @@ app.get("/gettodosfromdatabase", (req, res) => {
     });
     mysqlConnection.query('SELECT * FROM todos', (err, rows, fields) => {
         if (!err)
-            res.send(rows);
+            res.json(rows);
         else
             console.log(err);
     })
