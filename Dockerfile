@@ -8,4 +8,5 @@ RUN wget https://github.com/FiloSottile/mkcert/releases/download/v1.4.3/mkcert-v
 RUN chgrp -R 0 ./ && \
     chmod -R g=u ./
 EXPOSE 8080
+EXPOSE 8443
 CMD ["node", "server.js"]
