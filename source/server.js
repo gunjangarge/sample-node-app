@@ -59,6 +59,29 @@ app.get("/getexttodos", (req, res) => {
     })
 })
 
+app.get("/gettodosfromdatabase", (req, res) => {
+    const mysql = require('mysql');
+    var mysqlConnection = mysql.createConnection({
+                    host: process.env.DB_SERVER,
+                    user: process.env.DB_USER,
+                    password: process.env.DB_PASSWORD,
+                    database: process.env.DB_NAME,
+                    port: '3306'
+                });
+    mysqlConnection.connect((err)=> {
+        if(!err)
+            console.log('Connection Established Successfully');
+        else
+            console.log('Connection Failed!'+ JSON.stringify(err,undefined,2));
+    });
+    mysqlConnection.query('SELECT * FROM todos', (err, rows, fields) => {
+        if (!err)
+            res.send(rows);
+        else
+            console.log(err);
+    })
+})
+
 https.createServer({ key, cert }, app).listen(https_port, function(){
         console.log('Secured Sample node app listening at port ' + https_port)
 });
