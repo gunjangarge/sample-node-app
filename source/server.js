@@ -68,7 +68,7 @@ app.get("/gettodosfromdatabase", (req, res) => {
                     host: process.env.DB_SERVER,
                     user: process.env.DB_USER,
                     password: process.env.DB_PASSWORD,
-                    database: process.env.DB_NAME || 'todosdb',
+                    database: process.env.DB_NAME || 'tododb',
                     port: '3306'
     });
     mysqlConnection.connect((err)=> {
